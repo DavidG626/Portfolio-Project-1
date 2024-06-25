@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+   <title>Holliston Stock Research</title>
+</head>
+
+<body>
+    <div class="logout-container">
+        <a href="/logout" class="logout-link">Logout</a>
+    </div>
+    <div class="header-container">
+        <div class="title-container">
+            <h1 id="title">Holliston Stock Research</h1>
+        </div>
+     </div>
+    
+    <div class="horizontal-menu">
+        <a class='links' href="/overview">Overview</a>
+        <div><a class='links' href="/income_statement">Income Statement</a></div>
+        <div><a class='links' href="/cashflow">Cash Flow</a></div>
+        <div><a class='links' href="/balance_sheet">Balance Sheet</a></div>
+        <div><a class='links' href="/charts">Chart</a></div>
+        <div><a class='links' href="/vix_charts">Vix Chart</a></div>
+    </div>
+
+    <table>
+        <tr>
+            <td>
+                <h2 id="heading">Cash Flow: <i>{{ company_name }}</i></h2>
+            </td>
+        </tr>
+        <tr>
+            <td id="data-statements">{{ cashflow_data_clean|safe }}</td>
+        </tr>
+    </table>
+</body>
+</html>

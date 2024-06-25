@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='landing.css') }}">
+   <title>Register</title>
+</head>
+<body>
+
+
+   <header class="header">
+       <p id="title">Holliston Stock Research</p><br>
+       <p id="sub-title">Research Stocks</p>
+   </header>
+   
+   
+   
+   
+   <main>
+    <section>
+       
+        <p class="login-1" id="login-2">Create Account</p>
+        <form class='login-1'id="registration_form" action="/register" method="POST">
+            <label class='login-text'for="reg-username">Username</label>
+            <input class='input-boxes' type="text" id="reg-username" name="username" required><br>
+            <label class='login-text' for="reg-email">Email</label>
+            <input class='input-boxes' type="email" id="reg-email" name="email" required><br>
+            <label class='login-text' for="reg-password">Password</label>
+            <input class='input-boxes' type="password" id="reg-password" name="password" required><br>
+            <input class='button' type="submit" value="Register">
+
+
+        </form>
+        {% if error_message %}
+        <div class="error">{{ error_message }}</div>
+        {% endif %}
+    </section>
+    <section>
+        <p class="login-1" id="login-3">Login</p>
+        <form class='login-1' id="login_form" action="/login" method="POST">
+            <label class='login-text' for="login-username">Username</label>
+            <input class='input-boxes' type="text" id="login-username" name="login_username" required><br>
+            <label class='login-text' for="login-password">Password</label>
+            <input class='input-boxes' type="password" id="login-password" name="login_password" required><br>
+            <input class='button' type="submit" value="Login">
+        </form>
+        {% if error_message %}
+        <div class="error">{{ error_message }}</div>
+        {% endif %}
+    </section>   
+</main>
+
+
+</body>
+<footer>
+    
+    <div class="footer-1">
+        &copy; 2024 Holliston Stock Research | Created by David Gutierrez
+    </div>
+    <div class="david">
+        <a id="david">Visit My Portfolio</a>
+    </div>
+</footer>
+
+</body>
+</html>
+</html>
+
+

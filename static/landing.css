@@ -1,0 +1,138 @@
+/* * {
+  border: 1px solid red
+} */
+
+* {
+  margin: 0;
+  padding: 0;
+  
+}
+
+
+body {
+    background-color: #315470;
+    font-family: 'Noto+Serif+Display', sans-serif;
+    color: white;
+  }
+
+.header {
+  margin-bottom: 5px;
+}
+
+#title {
+    font-size: 55px;
+    text-align: center;
+    margin-top: 50px;
+    margin-bottom: -25px;
+    margin-left: 15px;
+}
+#sub-title {
+  text-align: center;
+  margin-top: 25px;
+  margin-bottom: 75px;
+  font-size: 35px;
+}
+
+
+.login-1 {
+  text-align: center;
+  margin-top: 25px;
+  font-size: 15px;
+  
+  
+  
+  
+}
+
+#login-2 {
+  margin-right: 260px;
+  text-decoration: underline;
+  text-decoration-color: #f46106;
+  font-size: 20px;
+}
+
+#login-3 {
+  margin-right: 350px;
+  text-decoration: underline;
+  text-decoration-color: #f46106;
+  font-size: 20px;
+}
+
+.input-boxes {
+  
+  width: 300px;
+  border-radius: 10px;
+  
+  margin-bottom: 10px;
+  
+  border: 3px solid white; 
+  border-radius: 10px;
+  padding: 10px;
+  font-size: 13px;
+  transition: border-color 0.3s ease; 
+}
+.input-boxes:focus {
+  outline: none; 
+  border-color: #f46106;
+}
+#reg-email {
+  margin-left: 35px;
+}
+
+#reg-password {
+  margin-left: 5px;
+}
+
+.login-text {
+  text-align: left;
+  
+}
+
+.button {
+  margin-left: 10px;
+  background-color: white; 
+  color: #315470; 
+  border: 3px solid white; 
+  border-radius: 10px;
+  padding: 10px; 
+  font-size: 13px; 
+  cursor: pointer; 
+  transition: background-color 0.3s ease; 
+}
+
+.button:hover {
+  background-color: #f46106;
+  color: white;
+}
+
+.error {
+  color: #f46106;
+  text-align: center;
+  margin-top: 15px;
+  margin-left: 75px;
+}
+
+.footer-1 {
+  margin: 150px 0px 0px 0px;
+  text-align: center;
+}
+
+
+
+.david {
+  font-size: 20px;
+  margin: 10px 0px 55px 0px;
+  text-align: center;
+}
+
+#david:hover {
+  
+  font-size: 20px;
+  cursor: pointer; 
+  transition: background-color 0.7s ease;
+  color: white;
+  text-decoration: underline;
+  text-decoration-color: #f46106;
+  text-decoration-thickness: 3px;
+  
+}

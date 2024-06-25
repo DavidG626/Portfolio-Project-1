@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+    <title>Holliston Stock Research</title>
+</head>
+
+<body>
+    
+        <div class="logout-container">
+            <a href="/logout" class="logout-link">Logout</a>
+        </div>
+        <div class="header-container">
+            <div id="title-container">
+                <p id="title">Holliston Stock Research</p>
+            </div>
+         </div>
+    
+    
+    <form action="/process_form" method="POST">
+        <div class="search-elements">
+            <div><input id="search-box" id="text" id="ticker" name="ticker" placeholder="Enter Ticker Here"></div>
+            <div><input id="search-button" type="submit" value="Search"></div>
+        </div>
+    </form>
+
+    <nav class="horizontal-menu">
+        <a class='links' href="/overview">Overview</a>
+        <a class='links' href="/income_statement">Income Statement</a>
+        <a class='links' href="/cashflow">Cash Flow</a>
+        <a class='links' href="/balance_sheet">Balance Sheet</a>
+        <a class='links' href="/charts">Chart</a>
+        <a class='links' href="/vix_charts">Vix Chart</a>
+    </nav>
+
+    
+
+    <div>
+        {% if error_message %}
+            <p>{{ error_message }}</p>
+        {% else %}
+            <h2  class="about-basics" id="heading"  ><i>{{ company_name }} </i><span>  ( {{ ticker_symbol }} )</span></h2>
+            <p class='about-basics' id="box-1" >{{ about }}</p>
+            
+            <h2 class="about-basics" id="heading">Basic Financials</h2>
+            <div  id="box-1">
+                <p >Stock Price: {{ stock_price }}</p>
+                <p >Fifty Two Week High: {{ fifty_two_week_high }}</p>
+                <p >Fifty Two Week Low: {{ fifty_two_week_low }}</p>
+                <p >Volume: {{ volume }}</p>
+                <p >Market Cap: {{ market_cap }}</p>
+                <p >Forward PE Ratio: {{ forward_PE }}</p>
+            </div>
+        {% endif %}
+    </div>
+
+    {% if not error_message %}
+        <div>
+            <h2 class='news' id="heading">News: <i>{{ company_name }}</i></h2>
+            <div class='news' id="box-2" >
+                <a class='news-links' href="https://tradingeconomics.com/calendar" target="_blank" class="hyperlink-style" rel="noopener noreferrer">Economic Calendar</a>
+                <br><br>
+                {% for article in current_news %}
+                    <a class="news-links" href="{{ article.link }}" target="_blank" class="hyperlink-style" rel="noopener noreferrer">{{ article.title }}</a>
+                    <br><br>
+                {% endfor %}
+            </div>
+        </div>
+    {% endif %}
+</body>
+
+</html>

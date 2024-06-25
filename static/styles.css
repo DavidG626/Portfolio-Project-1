@@ -1,0 +1,207 @@
+/* * {
+  border: 1px solid red;
+} */
+
+* {
+  margin: 0;
+  padding: 0;
+  
+}
+
+body {
+  color: white;
+  font-family: 'Noto+Serif+Display', sans-serif;
+  padding: 0 20px;
+  background-color: #315470;
+}
+
+
+/* all links */
+.links {
+  font-size: 20px;
+  display: block;
+  margin: 10px 0;
+  color: white;
+  text-decoration: none;
+}
+
+.links:hover {
+  text-decoration: underline;
+  text-decoration-color:  #f46106;
+  text-decoration-thickness: 3px;
+  transition: 0.3s ease;
+}
+/* end all links */
+
+
+/* logout */
+.logout-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 15px;
+
+}
+
+
+  
+.logout-link {
+  font-size: 20px;
+  color: white;
+  text-decoration: none;
+  position: relative;
+  top: 60px;
+  right: 20px;
+}
+
+
+.logout-link:hover {
+  text-decoration: underline;
+  text-decoration-color:  #f46106;
+  text-decoration-thickness: 3px;
+  transition: 0.3s ease;
+}
+/* end for logout */
+
+
+/* title */
+#title-container {
+  display: flex;
+  justify-content: flex-start;
+}
+#title {
+  height: 100px;
+  width: 200px;
+  color: #315470;
+  background-color: white;
+  font-size: 30px;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  border: 3px solid white; 
+  border-radius: 10px;
+  
+}
+
+/* end for title */
+
+/* horizontal menu */
+.horizontal-menu {
+  font-size: 20px;
+  margin-top: 25px;
+  margin-bottom: 25px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+/* end for horizontal menu */
+
+
+/* search styling */
+.search-elements {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding: 25px;
+}
+
+#search-box {
+  text-align: center;
+  width: 300px;
+  border: 3px solid white; 
+  border-radius: 10px;
+  padding: 10px;
+  font-size: 13px;
+  transition: border-color 0.3s ease; 
+}
+#search-box:focus {
+  outline: none; 
+  border-color: #f46106;
+}
+
+#search-button {
+  margin-left: 10px;
+  background-color: white; 
+  color: #315470; 
+  border: 3px solid white; 
+  border-radius: 10px;
+  padding: 10px; 
+  font-size: 13px; 
+  cursor: pointer; 
+  transition: background-color 0.3s ease; 
+}
+#search-button:hover {
+  background-color: #f46106;
+  color: white;
+}
+/* end for search button */
+
+
+
+
+/* about company */
+.about-basics {
+  display: flex;
+  flex-direction: row;
+  
+}
+#box-1 {
+  color: #315470;
+  background-color: white;
+  padding: 20px;
+  border: 2px solid #f46106;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+}
+
+#heading {
+  margin-top: 15px;
+  margin-bottom: 2px;
+}
+
+/* end for about company */
+
+/* news */
+.news {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  
+}
+#box-2 {
+  color:#315470;
+  background-color: white;
+  display: flex;
+  flex-direction: row;
+  padding: 20px;
+  border: 2px solid #f46106;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.news-links {
+  font-size: 20px;
+  display: block;
+  margin: 10px 0;
+  color: #315470;
+  text-decoration: none;
+}
+.news-links:hover {
+    text-decoration: underline;
+    text-decoration-color:  #f46106;
+    text-decoration-thickness: 3px;
+    transition: 0.3s ease;
+}
+/* end for news */
+
+/* styling for financial statements */
+#data-statements {
+  text-align: left;
+  background-color: white;
+  color: #315470;
+}
+/* end for financial statements */
