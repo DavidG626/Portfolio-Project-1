@@ -4,67 +4,97 @@
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='landing.css') }}">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+ 
    <title>Register</title>
 </head>
 <body>
-
-
-   <header class="header">
-       <p id="title">Holliston Stock Research</p><br>
-       <p id="sub-title">Research Stocks</p>
-   </header>
-   
-   
-   
-   
-   <main>
-    <section>
-       
-        <p class="login-1" id="login-2">Create Account</p>
-        <form class='login-1'id="registration_form" action="/register" method="POST">
-            <label class='login-text'for="reg-username">Username</label>
-            <input class='input-boxes' type="text" id="reg-username" name="username" required><br>
-            <label class='login-text' for="reg-email">Email</label>
-            <input class='input-boxes' type="email" id="reg-email" name="email" required><br>
-            <label class='login-text' for="reg-password">Password</label>
-            <input class='input-boxes' type="password" id="reg-password" name="password" required><br>
-            <input class='button' type="submit" value="Register">
-
-
-        </form>
-        {% if error_message %}
-        <div class="error">{{ error_message }}</div>
-        {% endif %}
+    <section class="header">
+        <nav>
+            <a href="landing.html"><img src="./static/hollistonlogo.png" alt="Logo"></a>
+            <div class="nav-links" id="navLinks">
+                <i class="fa fa-window-close" onclick="hideMenu()"></i>
+                <ul>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+            <i class="fa fa-bars" onclick="showMenu()"></i>
+        </nav>
+        <div class="text-box">
+            <h1>Holliston Stock <br><br>Research</h1>
+        </div>
     </section>
-    <section>
-        <p class="login-1" id="login-3">Login</p>
-        <form class='login-1' id="login_form" action="/login" method="POST">
-            <label class='login-text' for="login-username">Username</label>
-            <input class='input-boxes' type="text" id="login-username" name="login_username" required><br>
-            <label class='login-text' for="login-password">Password</label>
-            <input class='input-boxes' type="password" id="login-password" name="login_password" required><br>
-            <input class='button' type="submit" value="Login">
-        </form>
-        {% if error_message %}
-        <div class="error">{{ error_message }}</div>
-        {% endif %}
-    </section>   
-</main>
-
-
-</body>
-<footer>
     
+    <section class="user-form">
+        <div class="row">
+            
+            
+            <div class="reg-col">
+                    <h3>Create Account</h3>
+                    <div>
+                    <form class="reg-form" action="/register" method="POST">
+                        <div>
+                        <label for="reg-username">Username</label>
+                    </div>
+                        <input type="text" id="reg-username" name="username" class="input-boxes" required><br>
+                        <div>
+                        <label for="reg-email">Email</label>
+                    </div>
+                        <input type="email" id="reg-email" name="email" class="input-boxes" required><br>
+                        <div>
+                        <label for="reg-password">Password</label>
+                    </div>
+                        <input type="password" id="reg-password" name="password" class="input-boxes" required><br>
+                        <input type="submit" value="Register" class="button">
+                    </form>
+                    {% if reg_error_message %}
+                        <div class="error">{{ reg_error_message }}</div>
+                    {% endif %}
+                </div>
+        </div>
+                <div class="login-col">
+                    <h3>Login</h3>
+                    <div>
+                    <form class="login-form" action="/login" method="POST">
+                        <div>
+                        <label for="login-username">Username</label>
+                    </div>
+                        <input type="text" id="login-username" name="login_username" class="input-boxes" required><br>
+                        <div>
+                        <label for="login-password">Password</label>
+                    </div>
+                        <input type="password" id="login-password" name="login_password" class="input-boxes" required><br>
+                        <input type="submit" value="Login" class="button">
+                    </form>
+                    {% if login_error_message %}
+                        <div class="error">{{ login_error_message }}</div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </section>
+
+<footer>
     <div class="footer-1">
         &copy; 2024 Holliston Stock Research | Created by David Gutierrez
     </div>
-    <div class="david">
-        <a id="david">Visit My Portfolio</a>
+    <div class="nav-links-2">
+        <a href="https://github.com/DavidG626">Visit My Portfolio</a>
     </div>
 </footer>
 
+<!-- JavaScript Toggle Menu -->
+<script>
+    var navLinks = document.getElementById("navLinks");
+
+    function showMenu() {
+        navLinks.style.right = "0";
+    }
+
+    function hideMenu() {
+        navLinks.style.right = "-200px";
+    }
+</script>
 </body>
 </html>
-</html>
-
-
