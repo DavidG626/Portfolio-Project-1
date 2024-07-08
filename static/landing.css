@@ -130,7 +130,7 @@ nav .fa {
   width: 100%;
   margin: auto;
   text-align: center;
-  background-color: #315470;
+  background-color: black;
   color: white;
   padding-bottom: 55px;
   
@@ -234,7 +234,9 @@ nav .fa {
 } 
 
 .footer-1 {
-  margin: 50px 0px 0px 0px;
+  background-color: black;
+  color: white;
+  margin: 0px 0px 0px 0px;
   text-align: center;
 }
 
@@ -245,12 +247,14 @@ nav .fa {
  .nav-links-2 {
   flex: 1;
   text-align: center;
+  background-color: black;
+  
 }
 
  
 
  .nav-links-2 a {
-  color: black;
+  color: white;
   text-decoration: none;
   font-size: 25px;
   list-style: none;

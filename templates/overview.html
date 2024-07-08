@@ -36,40 +36,77 @@
         <a class='links' href="/vix_charts">Vix Chart</a>
     </nav>
 
-    
 
-    <div>
-        {% if error_message %}
-            <p>{{ error_message }}</p>
-        {% else %}
-            <h2  class="about-basics" id="heading"  ><i>{{ company_name }} </i><span>  ( {{ ticker_symbol }} )</span></h2>
-            <p class='about-basics' id="box-1" >{{ about }}</p>
-            
-            <h2 class="about-basics" id="heading">Basic Financials</h2>
-            <div  id="box-1">
-                <p >Stock Price: {{ stock_price }}</p>
-                <p >Fifty Two Week High: {{ fifty_two_week_high }}</p>
-                <p >Fifty Two Week Low: {{ fifty_two_week_low }}</p>
-                <p >Volume: {{ volume }}</p>
-                <p >Market Cap: {{ market_cap }}</p>
-                <p >Forward PE Ratio: {{ forward_PE }}</p>
-            </div>
-        {% endif %}
-    </div>
+{% if error_message %}
+    <div>{{ error_message }}</div>
+{% else %}
+{% endif %}
 
+
+
+
+
+<!-- company info -->
+<div class="text-box">
+    <h1>{{ company_name }}
+    <div>({{ ticker_symbol }})</div>
+    </h1>
+</div>
+<section class="container-1">
+    <section class="box-1">
+        <div>{{ about }}</div>
+    </section>
+
+
+<!-- basic financials -->
+   <section class="box-2">
+        <div>Stock Price: {{ stock_price }}</div>
+        <div>Fifty Two Week High: {{ fifty_two_week_high }}</div>
+        <div>Fifty Two Week Low: {{ fifty_two_week_low }}</div>
+        <div>Volume: {{ volume }}</div>
+        <div>Market Cap: {{ market_cap }}</div>
+        <div>Forward PE Ratio: {{ forward_PE }}</div>
+    </section>
+        
+<!-- news -->
+
+<div class="text-box">
+    <section><h1>News for {{ company_name }}</h1></section>
+</div>
+
+
+<div class="container-1">
     {% if not error_message %}
-        <div>
-            <h2 class='news' id="heading">News: <i>{{ company_name }}</i></h2>
-            <div class='news' id="box-2" >
-                <a class='news-links' href="https://tradingeconomics.com/calendar" target="_blank" class="hyperlink-style" rel="noopener noreferrer">Economic Calendar</a>
-                <br><br>
+        
+    
+            <div class="box-2">
+                <a class="news-links" href="//tradingeconomics.com/calendar" target="_blank"  rel="noopener noreferrer">Economic Calendar</a>
+                    <br> <br>
                 {% for article in current_news %}
-                    <a class="news-links" href="{{ article.link }}" target="_blank" class="hyperlink-style" rel="noopener noreferrer">{{ article.title }}</a>
-                    <br><br>
+                    <a class="news-links" href="{{ article.link }}" target="_blank"  rel="noopener noreferrer">{{ article.title }}</a>
+                    <br> <br>
                 {% endfor %}
             </div>
         </div>
     {% endif %}
+</section>
+
+
+
+
+<footer>
+    <div class="footer-1">
+        &copy; 2024 Holliston Stock Research | Created by David Gutierrez
+    </div>
+    <div class="nav-links-2">
+        <a href="https://github.com/DavidG626">Visit My Portfolio</a>
+    </div>
+</footer>
+    
+
+
+
+
 </body>
 
 </html>

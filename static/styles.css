@@ -1,10 +1,9 @@
-/* * {
-  border: 1px solid red;
-} */
+
 
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
   
 }
 
@@ -37,8 +36,9 @@ body {
 /* logout */
 .logout-container {
   display: flex;
-  justify-content: flex-end;
+  justify-content: flex-start;
   margin-bottom: 15px;
+  padding-left: 25px;
 
 }
 
@@ -70,16 +70,16 @@ body {
 }
 #title {
   height: 100px;
-  width: 200px;
-  color: #315470;
-  background-color: white;
-  font-size: 30px;
+  width: 100%;
+  color: #fff;
+  background-color: #315470;
+  font-size: 45px;
   font-weight: bold;
   text-align: center;
   margin-top: 50px;
   margin-bottom: 50px;
-  border: 3px solid white; 
-  border-radius: 10px;
+  
+ 
   
 }
 
@@ -137,58 +137,78 @@ body {
 /* end for search button */
 
 
-
+.text-box {
+  width: 100%;
+  align-items: center;
+  text-align: center;
+}
 
 /* about company */
-.about-basics {
-  display: flex;
-  flex-direction: row;
-  
-}
-#box-1 {
-  color: #315470;
-  background-color: white;
-  padding: 20px;
-  border: 2px solid #f46106;
-  border-radius: 10px;
-  display: flex;
-  flex-direction: column;
-  align-items: start;
+ .container-1 {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px;
+    flex-wrap: wrap;
+    
 }
 
-#heading {
-  margin-top: 15px;
-  margin-bottom: 2px;
+.box-1 {
+  color: #315470;
+  border-radius: 10px;
+  display: inline-flex;
+  flex-direction: row;
+  border: 2px solid orangered;
+  padding: 20px;
+  margin: 20px;
+  justify-content: center;
+  background-color: white;
+  width: 600px;
+  text-align: left;
+  
+  
 }
+.box-2 {
+  color: #315470;
+  border-radius: 10px;
+  display: inline-flex;
+  flex-direction: column;
+  border: 2px solid orangered;
+  padding: 20px;
+  margin: 20px;
+  width: 600px;
+  background-color: white;
+  text-align: left;
+}
+
+.box-2 div {
+  
+  padding-bottom: 34px;
+}
+
 
 /* end for about company */
 
+
+
+
+
+
+
+
 /* news */
-.news {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: flex-start;
-  
-}
-#box-2 {
-  color:#315470;
-  background-color: white;
-  display: flex;
-  flex-direction: row;
-  padding: 20px;
-  border: 2px solid #f46106;
-  border-radius: 10px;
+/* .news {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-}
+  align-items: flex-start;
+  
+} */
+
+
+
 .news-links {
-  font-size: 20px;
-  display: block;
-  margin: 10px 0;
   color: #315470;
-  text-decoration: none;
+  
 }
 .news-links:hover {
     text-decoration: underline;
@@ -198,6 +218,16 @@ body {
 }
 /* end for news */
 
+
+
+
+
+
+
+
+
+
+
 /* styling for financial statements */
 #data-statements {
   text-align: left;
@@ -205,3 +235,64 @@ body {
   color: #315470;
 }
 /* end for financial statements */
+
+
+/* Responsive Adjustments */
+@media (max-width: 600px) {
+  .container-1 {
+    flex-direction: column; /* Stack vertically on smaller screens */
+  }
+  .box-1, .box-2 {
+    width: 100%; /* Adjust width to 100% for smaller screens */
+    max-width: none;
+  }
+  #title {
+    font-size: 30px;
+    padding-top: 35px;
+  }
+}
+
+
+
+
+/* footer */
+
+.footer-1 {
+  background-color:#315470;
+  color: white;
+  margin: 0px 0px 0px 0px;
+  text-align: center;
+}
+.nav-links-2 {
+  flex: 1;
+  text-align: center;
+  background-color: #315470;
+  
+}
+
+ 
+
+ .nav-links-2 a {
+  color: white;
+  text-decoration: none;
+  font-size: 25px;
+  list-style: none;
+  display: inline-block;
+  padding-top: 15px;
+  padding-bottom: 75px;
+  position: relative;
+}
+
+.nav-links-2 a::after {
+  content: '';
+  width: 0%;
+  height: 2px;
+  background-color: #f44336;
+  display: block;
+  margin: auto;
+  transition: 0.5s;
+}
+
+.nav-links-2 a:hover::after {
+  width: 100%;
+}
