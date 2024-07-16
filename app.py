@@ -59,8 +59,8 @@ def register():
        # Check if username or email already exists in db
        if existing_user:
            # If the username or email already exists, handle the error accordingly
-           error_message = "Username or email already exists."
-           return render_template('landing.html', error_message=error_message)
+           reg_error_message = "Username or email already exists."
+           return render_template('landing.html', reg_error_message=reg_error_message)
   
        # If username and email are unique, insert into db
        cursor.execute('INSERT INTO users (username, email, password) VALUES (?, ?, ?)', (username, email, hashed_password,))
@@ -91,8 +91,8 @@ def login():
    else:
       
        # if the user doesn't exist or the password is incorrect, display an error message
-       error_message = "Invalid username or password"
-       return render_template('landing.html', error_message=error_message)
+       login_error_message = "Invalid username or password"
+       return render_template('landing.html', login_error_message=login_error_message)
 
       
 
@@ -304,4 +304,4 @@ def fetch_vix():
 
 if __name__ == '__main__':
   
-   app.run(debug=True, port=3015)
+   app.run(debug=True, port=3016)

@@ -1,38 +1,229 @@
 * {
+  /* color: purple; */
   margin: 0;
   padding: 0;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  
 }
 
 
 
-.header {
+body.background-img {
+  
+  background: url(../static/forest.jpg);
+  background-repeat: no-repeat;
   min-height: 100vh;
-  width: 100%;
-  background: linear-gradient(rgba(4, 9, 30, 0.7), rgba(4, 9, 30, 0.7)), url(../static/background.jpg);
-
+  background-size: cover;
   background-position: center;
   background-size: cover;
   position: relative;
   
-  color: white;
-  }
+}
 
-
-
-
-.text-box {
-  width: 90%;
-  color: #fff;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+.title {
+  color: #315470; 
+  align-items: center;
+  justify-content: center;
   text-align: center;
-  font-size: 35px;
-} 
+  font-size: 30px;
+  padding-bottom: 125px;
+}
+
+.register-header {
+  color: white;
+  text-align: center;
+  
+}
+
+#register {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: left;
+  flex-wrap: wrap;
+  
+}
+
+.register-text {
+  color: white;
+  border-radius: 15px;
+  align-self: center;
+  width: 350px;
+  margin: 20px 20px;
+  background-color: black;
+  padding: 20px 20px 20px 20px;
+
+  background-color: transparent;
+  backdrop-filter: blur(30px);
+  background-image: linear-gradient(
+    120deg,
+    rgba(255, 255,255, .3)
+    rgba(0,0,0, 0.8)
+  );
+
+}
+
+.login-header {
+  color: white;
+  text-align: center;
+  
+}
+
+
+.login-text {
+  color: white;
+  border-radius: 15px;
+  align-self: center;
+  width: 350px;
+  margin: 20px 20px;
+  background-color: black;
+  padding: 20px 20px 100px 20px;
+
+  background-color: transparent;
+  backdrop-filter: blur(30px);
+  background-image: linear-gradient(
+    120deg,
+    rgba(255, 255,255, .3)
+    rgba(0,0,0, 0.8)
+  );
+}
+
+/* DESKTOP NAV */
+
+nav,
+.nav-links {
+  display: flex;
+  
+}
 
 nav {
+  justify-content: space-around;
+  align-items: center;
+  
+  height: 17vh;
+}
+
+.nav-links {
+  gap: 2rem;
+  list-style: none;
+  font-size: 1.5rem;
+}
+
+a {
+  color: black;
+  text-decoration: none;
+  text-decoration-color: white;
+}
+
+a:hover {
+  color: grey;
+  text-decoration: underline;
+  text-underline-offset: 1rem;
+  text-decoration-color: rgb(181, 181, 181);
+}
+
+.logo {
+  font-size: 2rem;
+}
+
+.logo:hover {
+  cursor: default;
+}
+
+/* HAMBURGER MENU */
+
+#hamburger-nav {
+  display: none;
+  
+}
+
+.hamburger-menu {
+  position: relative;
+  display: inline-block;
+  
+}
+
+.hamburger-icon {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 24px;
+  width: 35px;
+  cursor: pointer;
+}
+
+.hamburger-icon span {
+  width: 100%;
+  height: 2px;
+  background-color: black;
+  transition: all 0.3s ease-in-out;
+}
+
+.menu-links {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  
+  width: fit-content;
+  max-height: 0;
+  overflow: hidden;
+  transition: all 0.3s ease-in-out;
+  border-radius: 10px;
+  
+  
+}
+
+.menu-links a {
+  display: block;
+  padding: 10px;
+  text-align: left;
+  text-decoration: none;
+  transition: all 0.3 ease-in-out;
+  background-color: transparent;
+  backdrop-filter: blur(20px);
+  background-image: linear-gradient(
+    -120deg,
+    rgba(255, 255, 255, .3),
+    rgba(0, 0, 0, 0.3)
+  );
+  font-size: 20px;
+  padding: 35px;
+  width: 100%;
+}
+
+.menu-links li {
+  list-style: none;
+}
+
+.menu-links.open {
+  max-height: 300px;
+}
+
+.hamburger-icon.open span:first-child {
+  transform: rotate(45deg) translate(10px, 5px);
+}
+
+.hamburger-icon.open span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger-icon.open span:last-child {
+  transform: rotate(-45deg) translate(10px, -5px);
+}
+
+.hamburger-icon span:first-child {
+  transform: none;
+}
+
+.hamburger-icon span:first-child {
+  opacity: 1;
+}
+
+.hamburger-icon span:first-child {
+  transform: none;
+}
+/* nav {
+  
   display: flex;
   padding: 2% 6%;
   justify-content: space-around;
@@ -46,6 +237,7 @@ nav img {
 }
 
 .nav-links {
+  
   flex: 1;
   text-align: right;
 }
@@ -58,7 +250,7 @@ nav img {
 }
 
 .nav-links ul li a {
-  color: #fff;
+  color: #315470;
   text-decoration: none;
   font-size: 25px;
 }
@@ -79,8 +271,8 @@ nav img {
 }
 
 nav .fa {
-  display: none;
-}
+  display: none; */
+
 @media (max-width: 600px) {
   html, body {
     overflow-x: hidden;
@@ -107,12 +299,7 @@ nav .fa {
     border-radius: 10px;
   }
 
-  nav .fa {
-    display: block;
-    color: #fff;
-    font-size: 22px;
-    cursor: pointer;
-  }
+  
 
   .nav-links ul {
     padding: 15px;
@@ -120,41 +307,16 @@ nav .fa {
 }
 
 
-.row {
-  
-  display: flex;
-  justify-content: space-between;
-}
 
-.user-form {
-  width: 100%;
-  margin: auto;
-  text-align: center;
-  background-color: black;
-  color: white;
-  padding-bottom: 55px;
-  
-}
 
-.reg-col {
-  flex-basis: 44%;
-  text-align: left;
-  padding: 25px;
-}
 
-.login-col {
-  flex-basis: 44%;
-  text-align: left;
-  padding: 25px;
-}
+
 
 .input-boxes {
   
   width: 300px;
   border-radius: 10px;
-  
   margin-bottom: 10px;
-  
   border: 3px solid white; 
   border-radius: 10px;
   padding: 10px;
@@ -190,35 +352,11 @@ nav .fa {
 }
 
 
-/* /* .login-1 {
-  text-align: center;
-  margin-top: 25px;
-  font-size: 15px;
-}
 
-#login-2 {
-  margin-right: 260px;
-  text-decoration: underline;
-  text-decoration-color: #f46106;
-  font-size: 20px;
-}
-
-#login-3 {
-  margin-right: 350px;
-  text-decoration: underline;
-  text-decoration-color: #f46106;
-  font-size: 20px;
-} */
-
-
-
-/* #reg-email {
-  margin-left: 35px;
-}
 
 #reg-password {
   margin-left: 5px;
-} */
+} 
 
 
 
@@ -229,14 +367,15 @@ nav .fa {
 .error {
   color: #f46106;
   text-align: center;
-  margin-top: 15px;
-  margin-left: 75px;
+  padding-bottom: 15px;
+  
 } 
 
 .footer-1 {
-  background-color: black;
+  padding: 15px 1px;
+  background-color: #13212b;
   color: white;
-  margin: 0px 0px 0px 0px;
+  
   text-align: center;
 }
 
@@ -247,7 +386,7 @@ nav .fa {
  .nav-links-2 {
   flex: 1;
   text-align: center;
-  background-color: black;
+  background-color: #13212b;
   
 }
 
@@ -256,11 +395,11 @@ nav .fa {
  .nav-links-2 a {
   color: white;
   text-decoration: none;
-  font-size: 25px;
+  font-size: 20px;
   list-style: none;
   display: inline-block;
   padding-top: 15px;
-  padding-bottom: 75px;
+  
   position: relative;
 }
 
