@@ -197,15 +197,24 @@ body.image {
 
 
 .text-box {
-  color: white;
-  font-size: 25px;
+  padding-top: 35px;
+  color: #315470;
+  font-size: 15px;
   width: 100%;
   align-items: center;
   text-align: center;
 }
+.text-box-news {
+  color: #315470;
+  font-size: 15px;
+  width: 100%;
+  align-items: center;
+  text-align: center;
 
+}
 /* about company */
  .container-1 {
+    
     display: flex;
     justify-content: space-around;
     margin: 20px;
@@ -214,6 +223,7 @@ body.image {
 }
 
 .box-1 {
+  font-size: 20px;
   color: #315470;
   border-radius: 10px;
   display: inline-flex;
@@ -229,6 +239,7 @@ body.image {
   
 }
 .box-2 {
+  font-size: 20px;
   color: #315470;
   border-radius: 10px;
   display: inline-flex;
@@ -251,10 +262,7 @@ body.image {
 
 
 
-/* .news-links {
-  color: #315470;
-  
-} */
+
 .news-links  {
   color: #315470;
   text-decoration: none;
