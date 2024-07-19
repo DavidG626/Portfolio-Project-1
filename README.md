@@ -1,14 +1,27 @@
-Features
+Features:
 User Authentication: Secure registration and login with password hashing.
+
 Financial Data: Fetch and display financial data using Yahoo Finance.
+
 Interactive Charts: Visualize data with Plotly.
+
 Database Integration: Store user data and application state with SQLite.
-Technologies Used
+
+
+Technologies Used:
 Flask: A lightweight WSGI web application framework for Python.
+
 Werkzeug: A comprehensive WSGI web application library for password hashing and other utilities.
+
 yfinance: A library to fetch financial data from Yahoo Finance.
+
 Plotly: A graphing library for interactive data visualization.
+
 SQLite: A lightweight database engine for storing user and application data.
+
+
+
+
 Installation
 Clone the Repository:
 
