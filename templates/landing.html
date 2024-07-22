@@ -4,11 +4,13 @@
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='landing.css') }}">
-   <!-- <script src="{{ url_for('static', filename='js/script.js') }}"></script> -->
+   <link rel="stylesheet" href="{{ url_for('static', filename='mediaqueries.css')}}">
+   <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 
    <title>Register</title>
 </head>
 <body class="background-img">
+    
     <nav id="desktop-nav">
         <div>
             <ul class="nav-links">
@@ -16,7 +18,8 @@
                 <li><a href="#">Contact</a></li>
             </ul>
         </div>       
-            </nav>
+    </nav>
+
             <nav id="hamburger-nav">
                 <div class="hamburger-menu">
                     <div class="hamburger-icon" onclick="toggleMenu()">
@@ -24,10 +27,14 @@
                         <span></span>
                         <span></span>
                     </div>
+
                     <div class="menu-links">
-                        <li><a href="#" onclick="toggleMenu()">About</a></li>
-                        <li><a href="#" onclick="toggleMenu()">Experience</a></li>
+                        <ul>
+                            <li><a href="#" onclick="toggleMenu()">About</a></li>
+                            <li><a href="#" onclick="toggleMenu()">Experience</a></li>
+                        </ul>
                     </div>
+
                 </div>
             </nav>
         
@@ -114,31 +121,10 @@
         
        
    
-   <!-- JavaScript Toggle Menu -->
-<script>
-    function toggleMenu() {
-        const menu = document.querySelector(".menu-links");
-        const icon = document.querySelector(".hamburger-icon");
-        menu.classList.toggle('open');
-        icon.classList.toggle('open');
-    }
-</script>         
-        
+
   
 
     
-<!-- JavaScript Toggle Menu -->
 
-<!-- <script>
-    var navLinks = document.getElementById("navLinks");
-
-    function showMenu() {
-        navLinks.style.right = "0";
-    }
-
-    function hideMenu() {
-        navLinks.style.right = "-200px";
-    } 
-</script> -->
 </body>
 </html>

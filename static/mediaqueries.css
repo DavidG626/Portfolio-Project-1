@@ -1,0 +1,78 @@
+
+
+@media screen and (max-width: 1200px) {
+    #desktop-nav {
+        display: none;
+    }
+    #hamburger-nav {
+        display: flex;
+        justify-content: end;
+        padding-right: 25px;
+    }
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media screen and (max-width: 600px) {
+   
+
+
+    html, body {
+      padding-top: 15px;
+      overflow-x: hidden;
+    }
+    
+    .text-box h1 {
+      font-size: 45px;
+    }
+  
+    .nav-links ul li {
+      display: block;
+    }
+  
+    .nav-links {
+      padding-left: 15px;
+     
+      flex-direction: column;
+      position: absolute;
+      background: #f44336;
+      height: 10vh;
+      width: 200px;
+      top: 0;
+      
+      text-align: left;
+      
+      transition: all 0.3 ease-in-out;
+      border-radius: 20px;
+      transition: all 0.3 ease-in-out;
+      background-color: transparent;
+      backdrop-filter: blur(10px);
+      background-image: linear-gradient(
+      -120deg,
+      rgba(255, 255, 255, .3),
+      rgba(0, 0, 0, 0.3)
+    );
+      font-size: 20px;
+      padding: 35px;
+      width: 100%;
+    }
+  
+    
+  
+    .nav-links ul {
+      padding: 15px;
+    }
+  }

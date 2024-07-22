@@ -12,11 +12,13 @@
     <div class="logout-container">
         <a href="/logout" class="logout-link">Logout</a>
     </div>
+    
     <div class="header-container">
         <div class="title-container">
             <h1 id="title">Holliston Stock Research</h1>
         </div>
      </div>
+     
      <nav class="horizontal-menu">
         <a class='links' href="/overview">Overview</a>
         <a class='links' href="/income_statement">Income Statement</a>
@@ -31,7 +33,7 @@
     <h2 id="heading">Income Statement: <i>{{ company_name }}</i></h2>
     <table>
         <tr id="data-statements">
-            <td>{{ income_statement_clean|safe }}</td>
+            <td class="tr">{{ income_statement_clean|safe }}</td>
         </tr>
     </table>
 </body>

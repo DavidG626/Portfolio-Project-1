@@ -302,11 +302,17 @@ body.image {
 
 /* styling for financial statements */
 #data-statements {
+  display: flex;
   
   text-align: left;
-  background-color: whitesmoke;
+  background-color: aliceblue;
   color: #315470;
-  border: 1px #315470 solid;
+  border: 1px red solid;
+
+}
+
+.tr {
+  align-items: center;
 }
 /* end for financial statements */
 
