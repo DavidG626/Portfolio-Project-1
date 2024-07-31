@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-   <meta charset="UTF-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
-   <title>Charts</title>
-</head>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="UTF-8">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='mediaqueries.css')}}">
+        <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+        <title>Holliston Stock Research</title>
+    </head>
 
 <body class="image">
     <div class="logout-container">
@@ -17,14 +19,56 @@
         </div>
      </div>
     
-    <div class="horizontal-menu">
-        <div><a class='links' href="/overview">Overview</a></div>
-        <div><a class='links' href="/income_statement">Income Statement</a></div>
-        <div><a class='links' href="/cashflow">Cash Flow</a></div>
-        <div><a class='links' href="/balance_sheet">Balance Sheet</a></div>
-        <div><a class='links' href="/charts">Chart</a></div>
-        <div><a class='links' href="/vix_charts">Vix Chart</a></div>
+     <nav id="desktop-nav">
+        <div>
+            <ul class="nav-links">
+                <ul><a href="/overview" >Overview</a></ul>
+                <ul><a href="/income_statement" >Income Statement</a></ul>
+                <ul><a href="/cashflow" >Cash Flow</a></ul>
+                <ul><a href="/balance_sheet" >Balance Sheet</a></ul>
+                <ul><a href="/charts" >Chart</a></ul>
+                <ul><a href="/vix_charts" >Vix Chart</a></ul>
+            </ul>
+        </div>
+
+                        
+     </nav>
+
+     <nav id="hamburger-nav">
+        <div class="hamburger-menu">
+            <div class="hamburger-icon" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        
+    
+            
+        <div class="menu-links">
+            <ul>
+                <li><a href="/overview" onclick="toggleMenu()">Overview</a></li>
+                <li><a href="/income_statement" onclick="toggleMenu()">Income Statement</a></li>
+                <li><a href="/cashflow" onclick="toggleMenu()">Cash Flow</a></li>
+                <li><a href="/balance_sheet" onclick="toggleMenu()">Balance Sheet</a></li>
+                <li><a href="/charts" onclick="toggleMenu()">Chart</a></li>
+                <li><a href="/vix_charts" onclick="toggleMenu()">Vix Chart</a></li>
+            </ul>
+        </div>
     </div>
+    </nav>
+
+
+
+
+
+
+<form action="/process_form" method="POST">
+    <div class="search-elements">
+        <div><input id="search-box" id="text" id="ticker" name="ticker" placeholder="{{ error_message or 'Enter Ticker Here' }}"></div>
+        <div><input id="search-button" type="submit" value="Search"></div>
+    </div>
+</form>
+
 
     <table>
         <tr>

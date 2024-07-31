@@ -93,11 +93,13 @@ body.background-img {
   display: flex;
   justify-content: end;
   padding-right: 25px;
+  
 }
 nav,
 .nav-links {
   display: flex;
   justify-content: flex-end;
+  
 
   
 }
@@ -112,19 +114,27 @@ nav {
   gap: 2rem;
   list-style: none;
   font-size: 1.5rem;
+  
 }
 
 a {
-  color: black;
+  color: #315470;
   text-decoration: none;
-  text-decoration-color: white;
+  
 }
 
-a:hover {
-  color: whitesmoke;
-  text-decoration: underline;
-  text-underline-offset: 1rem;
-  text-decoration-color: rgb(181, 181, 181);
+.nav-links a::after {
+  content: '';
+  width: 0%;
+  height: 2px;
+  background-color: #13212b;
+  display: block;
+  margin: auto;
+  transition: 0.5s;
+}
+
+.nav-links a:hover::after {
+  width: 100%;
 }
 
 
@@ -323,7 +333,7 @@ a:hover {
 .nav-links-2 a::after {
   content: '';
   width: 0%;
-  height: 1px;
+  height: 2px;
   background-color: #fff;
   display: block;
   margin: auto;
