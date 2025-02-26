@@ -339,33 +339,3 @@ a {
   width: 100%;
 }
   
-/* Responsive adjustments */
-@media (max-width: 1600px) {
-  html {
-      font-size: 16px;
-  }
-}
-
-@media (max-width: 1200px) {
-  html {
-      font-size: 16px;
-  }
-}
-
-@media (max-width: 992px) {
-  html {
-      font-size: 14px;
-  }
-}
-
-@media (max-width: 768px) {
-  html {
-      font-size: 12px;
-  }
-}
-
-@media (max-width: 600px) {
-  html {
-      font-size: 10px;
-  }
-}

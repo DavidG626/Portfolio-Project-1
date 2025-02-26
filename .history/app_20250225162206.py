@@ -129,68 +129,39 @@ def process_form():
        return render_template('overview.html', error_message=error_message)
 
 
+#basic financials route overview.html
 @app.route('/overview')
 def index():
-    if 'username' in session:
-        if 'ticker_symbol' in session:
-            ticker_symbol = session['ticker_symbol']
-            if not ticker_symbol:
-                error_message = "Please enter a valid ticker symbol"
-                return render_template('overview.html', error_message=error_message)
-                
-            try:
-                ticker = yf.Ticker(ticker_symbol)
-                
-                # Use fast_info instead of info for basic data
-                fast_info = ticker.fast_info
-                
-                # Get company info (may still need regular info for this)
-                try:
-                    company_info = ticker.info
-                    company_name = company_info.get('longName', ticker_symbol.upper())
-                    about = company_info.get('longBusinessSummary', 'No company description available.')
-                except:
-                    company_name = ticker_symbol.upper()
-                    about = 'Unable to retrieve company description.'
-                
-                # Use fast_info for pricing data
-                stock_price = '${:.2f}'.format(fast_info.last_price) if hasattr(fast_info, 'last_price') else 'N/A'
-                fifty_two_week_high = '${:.2f}'.format(fast_info.year_high) if hasattr(fast_info, 'year_high') else 'N/A'
-                fifty_two_week_low = '${:.2f}'.format(fast_info.year_low) if hasattr(fast_info, 'year_low') else 'N/A'
-                volume = '{:,}'.format(fast_info.last_volume) if hasattr(fast_info, 'last_volume') else 'N/A'
-                market_cap = '${:,.2f}'.format(fast_info.market_cap) if hasattr(fast_info, 'market_cap') else 'N/A'
-                
-                # Forward PE might still need to come from regular info
-                try:
-                    forward_PE = '{:.0f}'.format(ticker.info.get('forwardPE', 0)) if 'forwardPE' in ticker.info else 'N/A'
-                except:
-                    forward_PE = 'N/A'
+   if 'username' in session:
+  
+       if 'ticker_symbol' in session:
+           ticker_symbol = session['ticker_symbol']
+           ticker = yf.Ticker(ticker_symbol)
+           try:
+               ticker = yf.Ticker(ticker_symbol)
+               company_name = ticker.info['longName']
+               about = ticker.info['longBusinessSummary']
+              
+               stock_price = '${:.2f}'.format(ticker.info['currentPrice'])
+              
+               fifty_two_week_low = '${:.2f}'.format(ticker.info['fiftyTwoWeekLow'])
+               volume = '{:,}'.format(ticker.info['volume'])
+               market_cap = '${:,.2f}'.format(ticker.info['marketCap'])
+               forward_PE = '{:.0f}'.format(ticker.info['forwardPE'])
 
-                # Get news
-                try:
-                    news_data = ticker.news
-                    current_news = [{'title': news_item['title'], 'link': news_item['link']} for news_item in news_data[:20]]
-                except:
-                    current_news = []
-                
-                return render_template('overview.html', 
-                                      about=about, 
-                                      company_name=company_name, 
-                                      stock_price=stock_price,
-                                      fifty_two_week_high=fifty_two_week_high, 
-                                      fifty_two_week_low=fifty_two_week_low,
-                                      volume=volume, 
-                                      market_cap=market_cap, 
-                                      forward_PE=forward_PE, 
-                                      current_news=current_news, 
-                                      ticker_symbol=ticker_symbol)
-            except Exception as e:
-                error_message = f"Error retrieving data: {str(e)}"
-                return render_template('overview.html', error_message=error_message)
-        else:
-            return redirect(url_for('landing_page'))
-    else:
-        return redirect(url_for('landing_page'))
+
+               news_data = ticker.news
+               current_news = [{'title': news_item['title'], 'link': news_item['link']} for news_item in news_data[:20]]
+               return render_template('overview.html', about=about, company_name=company_name, stock_price=stock_price,
+                                                       fifty_two_week_high=fifty_two_week_high, fifty_two_week_low=fifty_two_week_low,
+                                                       volume=volume, market_cap=market_cap,  forward_PE=forward_PE, current_news=current_news, ticker_symbol=ticker_symbol)
+           except KeyError:
+               error_message = "Please Enter a Valid Ticker Symbol"
+               return render_template('overview.html', error_message=error_message)
+          
+    #    else:
+    #        return redirect(url_for('landing_html'))
+
     
 
   #income_statement.html route

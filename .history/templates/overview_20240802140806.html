@@ -86,16 +86,14 @@
 
 
 <!-- basic financials -->
-<section class="box-2">
-    <div>Stock Price: {{ stock_price if stock_price else 'N/A' }}</div>
-    <div>Fifty Two Week High: {{ fifty_two_week_high if fifty_two_week_high else 'N/A' }}</div>
-    <div>Fifty Two Week Low: {{ fifty_two_week_low if fifty_two_week_low else 'N/A' }}</div>
-    <div>Volume: {{ volume if volume else 'N/A' }}</div>
-    <div>Market Cap: {{ market_cap if market_cap else 'N/A' }}</div>
-    <div>Forward PE Ratio: {{ forward_PE if forward_PE else 'N/A' }}</div>
-</section>
-
-
+   <section class="box-2">
+        <div>Stock Price: {{ stock_price }}</div>
+        <div>Fifty Two Week High: {{ fifty_two_week_high }}</div>
+        <div>Fifty Two Week Low: {{ fifty_two_week_low }}</div>
+        <div>Volume: {{ volume }}</div>
+        <div>Market Cap: {{ market_cap }}</div>
+        <div>Forward PE Ratio: {{ forward_PE }}</div>
+    </section>
         
 <!-- news -->
 

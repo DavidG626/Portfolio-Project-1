@@ -17,7 +17,6 @@ body {
 }
 
 body.image {
-  
   background: url(../static/forest.jpg);
   background-repeat: no-repeat;
   min-height: 100vh;
@@ -25,8 +24,8 @@ body.image {
   background-position: center;
   background-size: cover;
   position: relative;
-  
 }
+
 /* nav */
 ul {
   list-style-type: none;
@@ -115,7 +114,7 @@ ul {
   width: 100%;
   height: 2px;
   background-color: #315470;
-  transition: all 0.3s ease-in-out;
+  transition: all .5s ease-in-out;
 }
 
 .menu-links {
@@ -222,6 +221,7 @@ ul {
 
 .logout-link:hover::after {
   width: 100%;
+  
 }
 /* end for logout */
 
