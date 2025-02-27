@@ -138,69 +138,6 @@ def process_form():
         print(f"Ticker validation error: {str(e)}")
         return render_template('overview.html', error_message="Please enter a valid ticker symbol")
 
-@app.route('/overview')
-def index():
-    # Make sure we return something for users not logged in
-    if 'username' not in session:
-        return redirect(url_for('login'))
-    
-    # Make sure we return something when no ticker is selected
-    if 'ticker_symbol' not in session:
-        return render_template('overview.html', error_message="No ticker selected")
-    
-    ticker_symbol = session['ticker_symbol']
-    if not ticker_symbol:
-        return render_template('overview.html', error_message="test 2")
-        
-    try:
-        # Basic ticker information with defaults
-        company_name = ticker_symbol.upper()
-        about = 'Company description not available.'
-        stock_price = 'N/A'
-        fifty_two_week_high = 'N/A'
-        fifty_two_week_low = 'N/A'
-        volume = 'N/A'
-        market_cap = 'N/A'
-        forward_PE = 'N/A'
-        current_news = []
-        
-        try:
-            ticker = yf.Ticker(ticker_symbol)
-            history = ticker.history(period="1d")
-            if not history.empty:
-                stock_price = '${:.2f}'.format(history['Close'].iloc[-1])
-        except Exception:
-            pass  # Continue with default values
-        
-        # Try to get company info separately
-        try:
-            company_info = ticker.info
-            if 'longName' in company_info:
-                company_name = company_info['longName']
-            if 'longBusinessSummary' in company_info:
-                about = company_info['longBusinessSummary']
-            if 'marketCap' in company_info:
-                market_cap = '${:,.2f}'.format(company_info['marketCap'])
-            if 'forwardPE' in company_info:
-                forward_PE = '{:.0f}'.format(company_info['forwardPE'])
-        except Exception:
-            pass  # Continue with default values
-        
-        return render_template('overview.html', 
-                              about=about, 
-                              company_name=company_name, 
-                              stock_price=stock_price,
-                              fifty_two_week_high=fifty_two_week_high, 
-                              fifty_two_week_low=fifty_two_week_low,
-                              volume=volume, 
-                              market_cap=market_cap, 
-                              forward_PE=forward_PE, 
-                              current_news=current_news, 
-                              ticker_symbol=ticker_symbol)
-    
-    except Exception as e:
-        # Always return something, even on error
-        return render_template('overview.html', error_message=f"Error: {str(e)}")
 
 
   #income_statement.html route
