@@ -149,57 +149,39 @@ def index():
                 return render_template('overview.html', error_message=error_message)
                 
             try:
-                # Basic ticker information without using problematic API features
-                company_name = ticker_symbol.upper()
-                about = 'Company description not available.'
-                stock_price = 'N/A'
-                fifty_two_week_high = 'N/A'
-                fifty_two_week_low = 'N/A'
-                volume = 'N/A'
-                market_cap = 'N/A'
-                forward_PE = 'N/A'
-                current_news = []
+                ticker = yf.Ticker(ticker_symbol)
                 
-                # Get basic company info first - avoiding fast_info
-                try:
-                    ticker = yf.Ticker(ticker_symbol)
-                    history = ticker.history(period="1d")
-                    if not history.empty:
-                        stock_price = '${:.2f}'.format(history['Close'].iloc[-1])
-                except Exception:
-                    pass
+                # Use fast_info instead of info for basic data
+                fast_info = ticker.fast_info
                 
-                # Try to get the company name separately
+                # Get company info 
                 try:
                     company_info = ticker.info
-                    if 'longName' in company_info:
-                        company_name = company_info['longName']
-                    if 'longBusinessSummary' in company_info:
-                        about = company_info['longBusinessSummary']
-                    if 'marketCap' in company_info:
-                        market_cap = '${:,.2f}'.format(company_info['marketCap'])
-                    if 'forwardPE' in company_info:
-                        forward_PE = '{:.0f}'.format(company_info['forwardPE'])
-                except Exception:
-                    pass
+                    company_name = company_info.get('longName', ticker_symbol.upper())
+                    about = company_info.get('longBusinessSummary', 'No company description available.')
+                except:
+                    company_name = ticker_symbol.upper()
+                    about = 'Unable to retrieve company description.'
                 
-                # Try to get historical data for 52-week high/low
+                # Use fast_info for pricing data
+                stock_price = '${:.2f}'.format(fast_info.last_price) if hasattr(fast_info, 'last_price') else 'N/A'
+                fifty_two_week_high = '${:.2f}'.format(fast_info.year_high) if hasattr(fast_info, 'year_high') else 'N/A'
+                fifty_two_week_low = '${:.2f}'.format(fast_info.year_low) if hasattr(fast_info, 'year_low') else 'N/A'
+                volume = '{:,}'.format(fast_info.last_volume) if hasattr(fast_info, 'last_volume') else 'N/A'
+                market_cap = '${:,.2f}'.format(fast_info.market_cap) if hasattr(fast_info, 'market_cap') else 'N/A'
+                
+                # Forward PE 
                 try:
-                    yearly_data = ticker.history(period="1y")
-                    if not yearly_data.empty:
-                        fifty_two_week_high = '${:.2f}'.format(yearly_data['High'].max())
-                        fifty_two_week_low = '${:.2f}'.format(yearly_data['Low'].min())
-                        volume = '{:,}'.format(int(yearly_data['Volume'].iloc[-1]))
-                except Exception:
-                    pass
-                
-                # Try to get news separately
+                    forward_PE = '{:.0f}'.format(ticker.info.get('forwardPE', 0)) if 'forwardPE' in ticker.info else 'N/A'
+                except:
+                    forward_PE = 'N/A'
+
+                # Get news
                 try:
                     news_data = ticker.news
-                    current_news = [{'title': news_item['title'], 'link': news_item['link']} 
-                                   for news_item in news_data[:20] if 'title' in news_item and 'link' in news_item]
-                except Exception:
-                    pass
+                    current_news = [{'title': news_item['title'], 'link': news_item['link']} for news_item in news_data[:20]]
+                except:
+                    current_news = []
                 
                 return render_template('overview.html', 
                                       about=about, 
@@ -215,7 +197,13 @@ def index():
             
             except Exception as e:
                 error_message = "test 3"
+                
                 return render_template('overview.html', error_message=error_message)
+       
+            
+        
+    
+
   #income_statement.html route
 @app.route('/income_statement')
 def fetch_income_statement():
