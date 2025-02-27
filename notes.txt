@@ -1,0 +1,8 @@
+ except Exception as e:
+                print(f"Error fetching data for {ticker_symbol}: {e}")
+                error_message = "Enter a valid ticker:"
+                return render_template('overview.html', error_message=error_message)
+        else:
+            return redirect(url_for('landing_page'))
+    else:
+        return redirect(url_for('landing_page'))

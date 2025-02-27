@@ -118,25 +118,28 @@ def dashboard():
 
 
 #input for ticker overview.html
+
 @app.route('/process_form', methods=['POST'])
 def process_form():
-    ticker_symbol = request.form.get('ticker')
-    
+   ticker_symbol = request.form.get('ticker')
+   if not ticker_symbol:
+       error_message = "test 1"
+       return render_template('overview.html', error_message=error_message)
    
-    if not ticker_symbol:
-        return render_template('overview.html', error_message="Please enter a valid ticker symbol")
-    
-    
-    try:
-        ticker = yf.Ticker(ticker_symbol)
-        test_data = ticker.fast_info.last_price
-        session['ticker_symbol'] = ticker_symbol
-        
-        return redirect('/overview')
-        
-    except Exception as e:
-        print(f"Ticker validation error: {str(e)}")
-        return render_template('overview.html', error_message="Please enter a valid ticker symbol")
+   # Try to validate the ticker by actually accessing some data
+   try:
+       ticker = yf.Ticker(ticker_symbol)
+       # Try to access some data to verify ticker exists
+       info = ticker.fast_info
+       # If we can access last_price, the ticker is probably valid
+       _ = info.last_price
+       # Set the session and redirect
+       session['ticker_symbol'] = ticker_symbol
+       return redirect(url_for('index'))
+   except:
+       # This will catch errors from invalid tickers
+       error_message = "test 1"
+       return render_template('overview.html', error_message=error_message)
 
 
 @app.route('/overview')

@@ -120,23 +120,14 @@ def dashboard():
 #input for ticker overview.html
 @app.route('/process_form', methods=['POST'])
 def process_form():
-    ticker_symbol = request.form.get('ticker')
-    
-   
-    if not ticker_symbol:
-        return render_template('overview.html', error_message="Please enter a valid ticker symbol")
-    
-    
-    try:
-        ticker = yf.Ticker(ticker_symbol)
-        test_data = ticker.fast_info.last_price
-        session['ticker_symbol'] = ticker_symbol
-        
-        return redirect('/overview')
-        
-    except Exception as e:
-        print(f"Ticker validation error: {str(e)}")
-        return render_template('overview.html', error_message="Please enter a valid ticker symbol")
+   ticker_symbol = request.form.get('ticker')
+   if ticker_symbol:
+       ticker = yf.Ticker(ticker_symbol)
+       session['ticker_symbol'] = ticker_symbol
+       return index()
+   else:
+       error_message = "test 1"
+       return render_template('overview.html', error_message=error_message)
 
 
 @app.route('/overview')
@@ -195,10 +186,13 @@ def index():
                                       current_news=current_news, 
                                       ticker_symbol=ticker_symbol)
             
-            except Exception as e:
+            except:
                 error_message = "test 3"
                 
                 return render_template('overview.html', error_message=error_message)
+        else:
+            return render_template('overview.html')
+    else
        
             
         
@@ -300,7 +294,7 @@ def fetch_charts():
            return render_template('charts.html', candlestick_chart=candlestick_chart,
                                                company_name=company_name)
     except KeyError:
-        error_message = "test 3"
+        error_message = "test 8"
         return render_template('overview.html', error_message=error_message)
 
 

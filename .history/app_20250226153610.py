@@ -124,18 +124,23 @@ def process_form():
     
    
     if not ticker_symbol:
-        return render_template('overview.html', error_message="Please enter a valid ticker symbol")
+        return render_template('overview.html', error_message="Please enter a ticker symbol")
     
-    
+    # Check if ticker exists by trying to get its data
     try:
         ticker = yf.Ticker(ticker_symbol)
+        # Force a request to Yahoo to see if data exists
         test_data = ticker.fast_info.last_price
-        session['ticker_symbol'] = ticker_symbol
         
+        # If we got here, the ticker is valid
+        session['ticker_symbol'] = ticker_symbol
+        # Important: Redirect rather than calling the function
         return redirect('/overview')
         
     except Exception as e:
+        # Print the actual error for debugging
         print(f"Ticker validation error: {str(e)}")
+        # But return a clean error message
         return render_template('overview.html', error_message="Please enter a valid ticker symbol")
 
 

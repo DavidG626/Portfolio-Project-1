@@ -5,11 +5,13 @@ import yfinance as yf
 import plotly.graph_objects as go
 import plotly
 import sqlite3
-import os
+
 
 app = Flask(__name__)
-app.secret_key = os.environ.get('SECRET_KEY', 'asdfasdfasdf') 
-
+app.secret_key = 'asdfasdfasdf' 
+# Near the top of your script
+# Create tables when app starts
+create_tables()
 
 # Landing Page
 @app.route('/')
@@ -20,7 +22,6 @@ def landing_page():
 # function to connect to the database
 def connect_db():
    return sqlite3.connect('database.db')
-
 
 
 
@@ -37,7 +38,7 @@ def create_tables():
                        password TEXT NOT NULL
                        )
                        ''')
-create_tables()
+
 # Register Route
 @app.route('/register', methods=['POST'])
 def register():
@@ -111,7 +112,7 @@ def logout():
 @app.route('/dashboard')
 def dashboard():
    if 'username' in session:
-       
+       # Add logic to display user-specific dashboard
        return render_template('overview.html', username=session['username'])
    else:
        return redirect(url_for('register'))
@@ -120,23 +121,14 @@ def dashboard():
 #input for ticker overview.html
 @app.route('/process_form', methods=['POST'])
 def process_form():
-    ticker_symbol = request.form.get('ticker')
-    
-   
-    if not ticker_symbol:
-        return render_template('overview.html', error_message="Please enter a valid ticker symbol")
-    
-    
-    try:
-        ticker = yf.Ticker(ticker_symbol)
-        test_data = ticker.fast_info.last_price
-        session['ticker_symbol'] = ticker_symbol
-        
-        return redirect('/overview')
-        
-    except Exception as e:
-        print(f"Ticker validation error: {str(e)}")
-        return render_template('overview.html', error_message="Please enter a valid ticker symbol")
+   ticker_symbol = request.form.get('ticker')
+   if ticker_symbol:
+       ticker = yf.Ticker(ticker_symbol)
+       session['ticker_symbol'] = ticker_symbol
+       return index()
+   else:
+       error_message = "Please Enter a Ticker Symbol"
+       return render_template('overview.html', error_message=error_message)
 
 
 @app.route('/overview')
@@ -145,7 +137,7 @@ def index():
         if 'ticker_symbol' in session:
             ticker_symbol = session['ticker_symbol']
             if not ticker_symbol:
-                error_message = "test 2"
+                error_message = "Please enter a valid ticker symbol"
                 return render_template('overview.html', error_message=error_message)
                 
             try:
@@ -154,7 +146,7 @@ def index():
                 # Use fast_info instead of info for basic data
                 fast_info = ticker.fast_info
                 
-                # Get company info 
+                # Get company info (may still need regular info for this)
                 try:
                     company_info = ticker.info
                     company_name = company_info.get('longName', ticker_symbol.upper())
@@ -170,7 +162,7 @@ def index():
                 volume = '{:,}'.format(fast_info.last_volume) if hasattr(fast_info, 'last_volume') else 'N/A'
                 market_cap = '${:,.2f}'.format(fast_info.market_cap) if hasattr(fast_info, 'market_cap') else 'N/A'
                 
-                # Forward PE 
+                # Forward PE might still need to come from regular info
                 try:
                     forward_PE = '{:.0f}'.format(ticker.info.get('forwardPE', 0)) if 'forwardPE' in ticker.info else 'N/A'
                 except:
@@ -194,14 +186,13 @@ def index():
                                       forward_PE=forward_PE, 
                                       current_news=current_news, 
                                       ticker_symbol=ticker_symbol)
-            
             except Exception as e:
-                error_message = "test 3"
-                
+                error_message = f"Error retrieving data: {str(e)}"
                 return render_template('overview.html', error_message=error_message)
-       
-            
-        
+        else:
+            return redirect(url_for('landing_page'))
+    else:
+        return redirect(url_for('landing_page'))
     
 
   #income_statement.html route
@@ -218,10 +209,10 @@ def fetch_income_statement():
       
            return render_template('income_statement.html', income_statement_clean=income_statement_clean, company_name=company_name)
        except KeyError:
-           error_message = "test 4"
+           error_message = "Please Enter a Valid Ticker"
            return render_template('overview.html', error_message=error_message)
    else:
-       return render_template('income_statement.html')
+       return render_template(income_statement.html)
 
 
 
@@ -239,13 +230,14 @@ def fetch_cashflow():
        
             return render_template('cashflow.html', cashflow_data_clean=cashflow_data_clean, company_name=company_name)
         except KeyError:
-            error_message = "test 5"
+            error_message = "Please Enter a Valid Ticker"
             return render_template('overview.html', error_message=error_message)
         except Exception as e:
-            error_message = "test 6"
+            error_message = f"An error occurred: {str(e)}"
             return render_template('overview.html', error_message=error_message)
     else:
-        return render_template('cashflow.html')  
+        return render_template('cashflow.html')  # Add quotes and fix indentation
+
 
 
 #balance_sheet.html route
@@ -262,8 +254,10 @@ def fetch_balance_sheet():
       
            return render_template('balancesheet.html', balance_sheet_clean = balance_sheet_clean, company_name=company_name)
        except KeyError:
-           error_message = "test 7"
+           error_message = "Please Enter a Valid Ticker"
            return render_template('overview.html', error_message=error_message)
+       else:
+           return render_template(balancesheet.html)
 
 
 
@@ -300,8 +294,10 @@ def fetch_charts():
            return render_template('charts.html', candlestick_chart=candlestick_chart,
                                                company_name=company_name)
     except KeyError:
-        error_message = "test 3"
-        return render_template('overview.html', error_message=error_message)
+               error_message = "Please Enter a Valid Ticker"
+               return render_template('overview.html', error_message=error_message)
+    else:
+               return render_template('overview.html')
 
 
 
@@ -340,5 +336,5 @@ def fetch_vix():
 
 
 if __name__ == '__main__':
-    port = int(os.environ.get('PORT', 5503))
+    port = int(os.environ.get('PORT', 5501))
     app.run(host='0.0.0.0', port=port, debug=False)

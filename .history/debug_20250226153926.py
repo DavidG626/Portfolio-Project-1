@@ -31,7 +31,7 @@ def debug_ticker_info(symbol):
         print(f"Error accessing fast_info: {e}")
 
 if __name__ == "__main__":
-    # Test with a few different symbols
+    # Test with a few different symbolsp
     for symbol in ["AAPL"]:
         debug_ticker_info(symbol)
         print("\n" + "="*50 + "\n")

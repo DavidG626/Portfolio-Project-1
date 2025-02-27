@@ -120,23 +120,14 @@ def dashboard():
 #input for ticker overview.html
 @app.route('/process_form', methods=['POST'])
 def process_form():
-    ticker_symbol = request.form.get('ticker')
-    
-   
-    if not ticker_symbol:
-        return render_template('overview.html', error_message="Please enter a valid ticker symbol")
-    
-    
-    try:
-        ticker = yf.Ticker(ticker_symbol)
-        test_data = ticker.fast_info.last_price
-        session['ticker_symbol'] = ticker_symbol
-        
-        return redirect('/overview')
-        
-    except Exception as e:
-        print(f"Ticker validation error: {str(e)}")
-        return render_template('overview.html', error_message="Please enter a valid ticker symbol")
+   ticker_symbol = request.form.get('ticker')
+   if ticker_symbol:
+       ticker = yf.Ticker(ticker_symbol)
+       session['ticker_symbol'] = ticker_symbol
+       return index()
+   else:
+       error_message = "Please Enter a Ticker Symbol"
+       return render_template('overview.html', error_message=error_message)
 
 
 @app.route('/overview')
@@ -145,7 +136,7 @@ def index():
         if 'ticker_symbol' in session:
             ticker_symbol = session['ticker_symbol']
             if not ticker_symbol:
-                error_message = "test 2"
+                error_message = "Please Enter a Valid Tickerl"
                 return render_template('overview.html', error_message=error_message)
                 
             try:
@@ -194,14 +185,14 @@ def index():
                                       forward_PE=forward_PE, 
                                       current_news=current_news, 
                                       ticker_symbol=ticker_symbol)
-            
             except Exception as e:
-                error_message = "test 3"
-                
-                return render_template('overview.html', error_message=error_message)
-       
-            
-        
+                print(f"Error fetching data for {ticker_symbol}: {e}")
+                error_message = "Enter a valid ticker:"
+                return render_template('overview.html', error_message="Please Enter a Valid Ticker")
+        else:
+            return redirect(url_for('landing_page'))
+    else:
+        return redirect(url_for('landing_page'))
     
 
   #income_statement.html route
@@ -218,7 +209,7 @@ def fetch_income_statement():
       
            return render_template('income_statement.html', income_statement_clean=income_statement_clean, company_name=company_name)
        except KeyError:
-           error_message = "test 4"
+           error_message = "Please Enter a Valid Ticker"
            return render_template('overview.html', error_message=error_message)
    else:
        return render_template('income_statement.html')
@@ -239,10 +230,10 @@ def fetch_cashflow():
        
             return render_template('cashflow.html', cashflow_data_clean=cashflow_data_clean, company_name=company_name)
         except KeyError:
-            error_message = "test 5"
+            error_message = "Please Enter a Valid Ticker"
             return render_template('overview.html', error_message=error_message)
         except Exception as e:
-            error_message = "test 6"
+            error_message = "Please Enter a Valid Ticker"
             return render_template('overview.html', error_message=error_message)
     else:
         return render_template('cashflow.html')  
@@ -262,7 +253,7 @@ def fetch_balance_sheet():
       
            return render_template('balancesheet.html', balance_sheet_clean = balance_sheet_clean, company_name=company_name)
        except KeyError:
-           error_message = "test 7"
+           error_message = "Please Enter a Valid Ticker"
            return render_template('overview.html', error_message=error_message)
 
 
@@ -300,7 +291,7 @@ def fetch_charts():
            return render_template('charts.html', candlestick_chart=candlestick_chart,
                                                company_name=company_name)
     except KeyError:
-        error_message = "test 3"
+        error_message = "Please Enter a Valid Ticker"
         return render_template('overview.html', error_message=error_message)
 
 
@@ -340,5 +331,5 @@ def fetch_vix():
 
 
 if __name__ == '__main__':
-    port = int(os.environ.get('PORT', 5503))
+    port = int(os.environ.get('PORT', 5501))
     app.run(host='0.0.0.0', port=port, debug=False)
